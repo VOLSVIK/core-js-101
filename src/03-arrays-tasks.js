@@ -19,8 +19,14 @@
  *    ['Array', 'Number', 'string'], 'Date'    => -1
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+function findElement(arr, value) {
+  const rez = arr.reduce((n0, n, i) => {
+    if (n === value) {
+      return i;
+    }
+    return n0;
+  }, -1);
+  return rez;
 }
 
 /**
@@ -34,8 +40,20 @@ function findElement(/* arr, value */) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  let i = 0;
+  const arr = [];
+  let n = 1;
+  function arrcreat() {
+    if (len > i) {
+      i += 1;
+      arr.push(n);
+      n += 2;
+      arrcreat();
+    }
+  }
+  arrcreat();
+  return arr;
 }
 
 /**
@@ -50,8 +68,8 @@ function generateOdds(/* len */) {
  *    [0, 1, 2, 3, 4, 5] => [0, 1, 2, 3, 4, 5,   0, 1, 2, 3, 4, 5]
  *    [] => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  return arr.concat(arr);
 }
 
 /**
@@ -65,8 +83,14 @@ function doubleArray(/* arr */) {
  *    [-1, 2, -5, -4, 0] => [ 2 ]
  *    [] => []
  */
-function getArrayOfPositives(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfPositives(arr) {
+  const rez = arr.filter((elem) => {
+    if (elem > 0) {
+      return true;
+    }
+    return false;
+  });
+  return rez;
 }
 
 /**
@@ -80,8 +104,14 @@ function getArrayOfPositives(/* arr */) {
  *    [ 1, 2, 3, 4, 5 ] => []
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
-function getArrayOfStrings(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfStrings(arr) {
+  const rez = arr.filter((elem) => {
+    if (typeof elem === 'string') {
+      return true;
+    }
+    return false;
+  });
+  return rez;
 }
 
 /**
@@ -97,8 +127,21 @@ function getArrayOfStrings(/* arr */) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  const rez = arr.filter((elem) => {
+    if (elem === 0 || elem === false || elem === '' || elem === undefined || elem === null || Number.isNaN(elem)) {
+      if (typeof elem === 'string') {
+        if (elem === '') {
+          return false;
+        }
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return null;
+  });
+  return rez;
 }
 
 /**
